@@ -18,7 +18,7 @@ pipeline {
                     sh """
                         echo 'Deploying to NGINX Server...'
                         scp -o StrictHostKeyChecking=no index.html ec2-user@172.31.9.99:/usr/share/nginx/html/index.html
-                       //ssh -o StrictHostKeyChecking=no ec2-user@172.31.9.99 'sudo mv /tmp/index.html /usr/share/nginx/html/index.html'
+                       /*ssh -o StrictHostKeyChecking=no ec2-user@172.31.9.99 'sudo mv /tmp/index.html /usr/share/nginx/html/index.html'*/
                     """
                 }
             }
