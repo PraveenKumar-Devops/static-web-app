@@ -2,11 +2,24 @@ pipeline {
     agent any
 
     stages {
-        stage("Git clone") {
+        stage("Git Clone") {
             steps {
-                git branch: 'development', 
-                    credentialsId: 'GitHubCred', 
+                git(
+                    branch: 'development',
+                    credentialsId: 'GitHubCred',
                     url: 'https://github.com/PraveenKumar-Devops/static-web-app.git'
+                )
+            }
+        }
+
+        stage("Deploy to NGINX") {
+            steps {
+                sshagent(['Nginx_Server_SSHKey']) {
+                    sh """
+                        echo 'Deploying to NGINX Server...'
+                        scp -o StrictHostKeyChecking=no index.html ec2-user@172.31.9.99:/usr/share/nginx/html/
+                    """
+                }
             }
         }
     }
