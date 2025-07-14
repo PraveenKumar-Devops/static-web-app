@@ -1,7 +1,9 @@
 pipeline{
 agent any
 
+stages{
 stage("Git clone"){
 git branch: 'development', credentialsId: 'GitHubCred', url: 'https://github.com/PraveenKumar-Devops/static-web-app.git'
+}
 }
 }
